@@ -1,6 +1,6 @@
 # DIRV: Theory of Operation
 
-## Architectural Overview
+##  Architectural Overview
 
 The core bottleneck in localized Mixture of Experts (MoE) inference is structural. Standard execution frameworks treat the routing layer as a sequential user-space loop. This forces a highly inefficient operational trade-off: either pin the entire parameter weight set into VRAM permanently, or suffer severe CPU-blocking round-trips ($vkQueueWaitIdle$) as the host dispatches each selected expert one by one during a layer's forward pass. On commodity, edge, or integrated silicon, this runtime overhead completely starves the execution queues.
 
